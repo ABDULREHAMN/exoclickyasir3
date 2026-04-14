@@ -79,12 +79,12 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 12013.28
-  const pendingBalance = 1410.00
-  const thisMonthEarnings = 10529.00
-  const lastMonthEarnings = 2910.11
-  const totalPayments = 1585.18
-  const totalEarnings = 15039.16
+  const availableBalance = 366.11
+  const pendingBalance = 7915.22
+  const thisMonthEarnings = 8191.22
+  const lastMonthEarnings = 3085.50
+  const totalPayments = 10668.79
+  const totalEarnings = 11276.16
   const nextWithdrawalDate = "14 Apr 2026"
 
   const allReportData = [
@@ -137,10 +137,6 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   const recentActivityData = [
     { date: "Apr 13, 2026", impressions: 17210, clicks: 2008, revenue: 570.66, ctr: "11.67%", ecpm: "404.97" },
   ]
-  
-  console.log("[v0] Recent Activity Data:", recentActivityData)
-  console.log("[v0] Print Log - 09 Apr 2026 - No print action")
-  console.log("[v0] Print Log - 10 Apr 2026 - Ready for Print")
 
   const latestActivity = {
     date: "Apr 13, 2026",
@@ -151,11 +147,11 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     ecpm: "404.97",
   }
 
-  const todayRevenue = 570.66
-  const todayImpressions = 17210
-  const todayClicks = 2008
-  const todayCTR = "11.67"
-  const todayECPM = "404.97"
+  const todayRevenue = 120.16
+  const todayImpressions = 11230
+  const todayClicks = 345
+  const todayCTR = "7.67"
+  const todayECPM = "198.99"
 
   const hourlyData = [
     { hour: "00", revenue: 2, impressions: 400, clicks: 5, ctr: "1.25%", ecpm: "5.00" },
@@ -172,9 +168,9 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   ]
 
   const todayTotals = {
-    impressions: 17210,
-    clicks: 2008,
-    revenue: 570.66,
+    impressions: 11230,
+    clicks: 345,
+    revenue: 120.16,
   }
 
   // This ensures all data aggregates to locked totals: $4,819.23 revenue, 32,687 clicks, 567,531 impressions
@@ -1002,7 +998,7 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Last Month</span>
-                    <span className="text-lg font-semibold text-gray-700">$820.50</span>
+                    <span className="text-lg font-semibold text-gray-700">$3,085.50</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Growth Rate</span>
@@ -1249,17 +1245,17 @@ ${exportData.map((d) => `${d.Date} | Revenue: ${d.Revenue} | Impressions: ${d.Im
     <div className="p-6 space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <StatsCard title="TODAY" value={`$${todayTotals.revenue.toFixed(2)}`} />
-        <StatsCard title="THIS MONTH" value={`$${thisMonthEarnings.toFixed(3)}`} />
-        <StatsCard title="LAST MONTH" value="$820.50" />
+        <StatsCard title="THIS MONTH" value={`$${thisMonthEarnings.toFixed(2)}`} />
+        <StatsCard title="LAST MONTH" value="$3,085.50" />
         <StatsCard
           title="THIS MONTH FORECAST"
-          value="$508+"
+          value="$1,278+"
           badge={{
             text: "78%",
             color: "bg-green-500",
           }}
         />
-        <StatsCard title="LAST 6 MONTHS" value={`$${totalEarnings.toFixed(3)}`} />
+        <StatsCard title="LAST 6 MONTHS" value={`$${totalEarnings.toFixed(2)}`} />
       </div>
 
       {/* Action Buttons */}
