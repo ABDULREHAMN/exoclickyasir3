@@ -132,10 +132,13 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "Feb 28, 2026", impressions: 13453, clicks: 341, revenue: 83.12, ctr: "2.53%", ecpm: "92.77" },
     { date: "Mar 1, 2026", impressions: 13425, clicks: 365, revenue: 81.55, ctr: "2.72%", ecpm: "82.23" },
     { date: "Mar 2, 2026", impressions: 1125, clicks: 45, revenue: 11.79, ctr: "4.00%", ecpm: "83.55" },
+    { date: "Apr 13, 2026", impressions: 10980, clicks: 320, revenue: 110.45, ctr: "7.10%", ecpm: "185.50" },
+    { date: "Apr 14, 2026", impressions: 11230, clicks: 345, revenue: 120.16, ctr: "7.67%", ecpm: "198.99" },
   ]
 
   const recentActivityData = [
-    { date: "Apr 13, 2026", impressions: 17210, clicks: 2008, revenue: 570.66, ctr: "11.67%", ecpm: "404.97" },
+    { date: "Apr 14, 2026", impressions: 11230, clicks: 345, revenue: 120.16, ctr: "7.67%", ecpm: "198.99" },
+    { date: "Apr 13, 2026", impressions: 10980, clicks: 320, revenue: 110.45, ctr: "7.10%", ecpm: "185.50" },
   ]
 
   const latestActivity = {
@@ -678,10 +681,10 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
   }, [filteredReportData])
 
   // Display totals - use calculated when filters are active, otherwise use fixed totals
-  // FORCE UPDATE: Using final latest Mar 1, 2026 totals
-  const displayTotalRevenue = 15039.16 // April update Apr 12-13
-  const displayTotalClicks = 52883 // Updated total
-  const displayTotalImpressions = 1379981 // Updated total
+  // FORCE UPDATE: Using final latest Apr 14, 2026 totals
+  const displayTotalRevenue = 11276.16 // April update Apr 14
+  const displayTotalClicks = 345 // Updated total
+  const displayTotalImpressions = 11230 // Updated total
 
   const calculateWeekOverWeekGrowth = () => {
     const dataToCalculate = dashboardDateRange ? filteredReportData : allReportData
