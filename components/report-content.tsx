@@ -510,7 +510,7 @@ export function ReportContent() {
               value={selectedSite}
               onChange={(e) => setSelectedSite(e.target.value)}
             >
-              <option>https://eduinfomi.com</option>
+              <option>https://edudegreehub.com</option>
               <option>All Sites</option>
             </select>
           </div>

@@ -65,13 +65,25 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
   const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
     {
+      id: "wd-14apr",
+      date: "14 Apr 2026",
+      method: "Payoneer",
+      amount: "$7,915.22",
+      status: "Pending",
+      details: "abdul.rehman.soashraf@gmail.com",
+      grossAmount: "$7,915.22",
+      fee: "$0.00",
+      feePercentage: 0,
+      processingTime: "8-10 days",
+    },
+    {
       id: "wd-29mar",
       date: "29 Mar 2026",
       method: "Payoneer",
-      amount: "$1410.00",
-      status: "Pending",
+      amount: "$1,230.12",
+      status: "Completed",
       details: "abdul.rehman.soashraf@gmail.com",
-      grossAmount: "$1410.00",
+      grossAmount: "$1,230.12",
       fee: "$0.00",
       feePercentage: 0,
       processingTime: "8-10 days",
@@ -80,10 +92,10 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       id: "wd-12mar",
       date: "12 Mar 2026",
       method: "Payoneer",
-      amount: "$1012.00",
+      amount: "$945.22",
       status: "Completed",
       details: "abdul.rehman.soashraf@gmail.com",
-      grossAmount: "$1012.00",
+      grossAmount: "$945.22",
       fee: "$0.00",
       feePercentage: 0,
       processingTime: "8-10 days",
@@ -92,10 +104,10 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       id: "wd-25feb",
       date: "25 Feb 2026",
       method: "Payoneer",
-      amount: "$573.18",
+      amount: "$578.23",
       status: "Completed",
       details: "abdul.rehman.soashraf@gmail.com",
-      grossAmount: "$573.18",
+      grossAmount: "$578.23",
       fee: "$0.00",
       feePercentage: 0,
       processingTime: "8-10 days",
@@ -172,16 +184,14 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     return () => clearInterval(interval)
   }, [withdrawalHistory])
 
-  const availableBalance = 12013.28
-  const pendingBalance = 1410.00
+  const availableBalance = 366.11
+  const pendingBalance = 7915.22
   const totalEarnings = 15039.16
-  const totalPayments = 1585.18
+  const totalPayments = 10668.79
   const thisMonthEarnings = 10529.00
   const lastMonthEarnings = 2910.11
   const nextWithdrawalDate = "14 Apr 2026"
   
-  console.log("[v0] Payment Values - Total Payments:", totalPayments, "Available Balance:", availableBalance, "Pending:", pendingBalance)
-
   const paymentEntries = []
 
   const recentActivity = []
