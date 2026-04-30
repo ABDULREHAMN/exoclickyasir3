@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -16,13 +16,58 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [usernameFocused, setUsernameFocused] = useState(false)
   const [passwordFocused, setPasswordFocused] = useState(false)
+  const [isLocked, setIsLocked] = useState(false)
+  const [lockTimeRemaining, setLockTimeRemaining] = useState(0)
+
+  // Check if login is locked on component mount
+  useEffect(() => {
+    const checkLockStatus = () => {
+      const lockData = localStorage.getItem("loginLock")
+      if (lockData) {
+        const { lockedUntil, failedAttempts } = JSON.parse(lockData)
+        const now = Date.now()
+        
+        if (now < lockedUntil) {
+          setIsLocked(true)
+          const remaining = Math.ceil((lockedUntil - now) / 1000)
+          setLockTimeRemaining(remaining)
+        } else {
+          // Lock has expired
+          localStorage.removeItem("loginLock")
+          setIsLocked(false)
+        }
+      }
+    }
+    
+    checkLockStatus()
+    
+    // Update lock timer every second
+    const interval = setInterval(() => {
+      checkLockStatus()
+    }, 1000)
+    
+    return () => clearInterval(interval)
+  }, [])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
     setIsLoading(true)
 
-    if (username === "yasirali009" && password === "Yasirali099@") {
+    // Check if account is locked
+    if (isLocked) {
+      setError(`Too many failed attempts. Try again in ${lockTimeRemaining} seconds.`)
+      setIsLoading(false)
+      return
+    }
+
+    const correctPassword = "ABR$786@"
+    
+    if (username === "yasirali009" && password === correctPassword) {
+      // Clear failed attempts on successful login
+      localStorage.removeItem("loginLock")
+      localStorage.removeItem("failedAttempts")
+      
       // Check if account is approved
       const signupData = localStorage.getItem("signupData")
       if (signupData) {
@@ -38,14 +83,51 @@ export default function LoginPage() {
         }
       }
 
-      // Success - redirect to dashboard
+      // Success - set secure session
+      const sessionToken = Math.random().toString(36).substring(2, 15)
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("username", username)
+      localStorage.setItem("sessionToken", sessionToken)
+      localStorage.setItem("sessionStartTime", Date.now().toString())
+      
+      // Set secure cookie-like behavior
+      localStorage.setItem("authCookie", JSON.stringify({
+        token: sessionToken,
+        username: username,
+        createdAt: Date.now(),
+        expiresAt: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
+      }))
+      
       setTimeout(() => {
         router.push("/dashboard")
       }, 500)
     } else {
-      setError("Invalid username or password")
+      // Track failed attempts
+      let failedAttempts = 0
+      const existing = localStorage.getItem("failedAttempts")
+      if (existing) {
+        failedAttempts = parseInt(existing) + 1
+      } else {
+        failedAttempts = 1
+      }
+      
+      localStorage.setItem("failedAttempts", failedAttempts.toString())
+      
+      // Lock account after 3 failed attempts
+      if (failedAttempts >= 3) {
+        const lockDuration = 15 * 60 * 1000 // 15 minutes
+        const lockedUntil = Date.now() + lockDuration
+        localStorage.setItem("loginLock", JSON.stringify({
+          lockedUntil,
+          failedAttempts
+        }))
+        setIsLocked(true)
+        setLockTimeRemaining(900) // 15 minutes in seconds
+        setError("Too many failed attempts. Try again later.")
+      } else {
+        const attemptsRemaining = 3 - failedAttempts
+        setError(`Invalid username or password (${attemptsRemaining} attempt${attemptsRemaining !== 1 ? 's' : ''} remaining)`)
+      }
       setIsLoading(false)
     }
   }
@@ -137,10 +219,10 @@ export default function LoginPage() {
 
             <Button
               type="submit"
-              disabled={isLoading}
-              className="w-full bg-[#0088cc] hover:bg-[#0077b3] text-white font-bold py-3 rounded text-sm uppercase tracking-wide"
+              disabled={isLoading || isLocked}
+              className="w-full bg-[#0088cc] hover:bg-[#0077b3] text-white font-bold py-3 rounded text-sm uppercase tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? "LOGGING IN..." : "LOG IN"}
+              {isLoading ? "LOGGING IN..." : isLocked ? `LOCKED (${lockTimeRemaining}s)` : "LOG IN"}
             </Button>
           </form>
 

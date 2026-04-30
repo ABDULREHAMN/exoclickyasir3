@@ -80,8 +80,19 @@ export function TopNavbar({ onNavigate }: TopNavbarProps) {
   }
 
   const handleLogout = () => {
-    localStorage.clear()
+    // Comprehensive session cleanup
+    localStorage.removeItem("isLoggedIn")
+    localStorage.removeItem("username")
+    localStorage.removeItem("sessionToken")
+    localStorage.removeItem("sessionStartTime")
+    localStorage.removeItem("authCookie")
+    localStorage.removeItem("userRole")
+    localStorage.removeItem("failedAttempts")
+    localStorage.removeItem("loginLock")
+    
     sessionStorage.clear()
+    
+    // Redirect to login
     window.location.href = "/login"
   }
 
