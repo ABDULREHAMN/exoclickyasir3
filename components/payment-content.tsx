@@ -69,13 +69,13 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       date: "30 Apr 2026",
       method: "Crypto - TRC20",
       amount: "$9,757.78",
-      status: "Under Review",
+      status: "Pending",
       details: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
       grossAmount: "$9,757.78",
       fee: "$0.00",
       feePercentage: 0,
       processingTime: "1-2 hours",
-      notification: "Sent to Wallet",
+      notification: "Sent to Payoneer",
     },
     {
       id: "wd-14apr",
@@ -173,11 +173,11 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     return () => clearInterval(interval)
   }, [withdrawalHistory])
 
-  const availableBalance = 864.28
+  const availableBalance = 946.28
   const pendingBalance = 9757.78
-  const totalEarnings = 14848.70
+  const totalEarnings = 14930.70
   const totalPayments = 13377.05
-  const thisMonthEarnings = 10607.16
+  const thisMonthEarnings = 10689.16
   const lastMonthEarnings = 3085.50
   const nextWithdrawalDate = "14 Apr 2026"
   
