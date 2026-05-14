@@ -65,11 +65,23 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
   const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
     {
+      id: "wd-30apr",
+      date: "30 Apr 2026",
+      method: "Crypto - TRC20",
+      amount: "$9,757.78",
+      status: "Pending",
+      details: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
+      grossAmount: "$9,757.78",
+      fee: "$0.00",
+      feePercentage: 0,
+      processingTime: "1-2 hours",
+    },
+    {
       id: "wd-14apr",
       date: "14 Apr 2026",
       method: "Payoneer",
       amount: "$7,915.22",
-      status: "Cancelled",
+      status: "Declined",
       details: "abdul.rehman.soashraf@gmail.com",
       grossAmount: "$7,915.22",
       fee: "$0.00",
@@ -80,6 +92,18 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethodData[]>([
     {
+      id: "pm-2",
+      type: "crypto",
+      accountHolderName: "Abdul Rehman",
+      email: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
+      country: "Pakistan",
+      currency: "USD",
+      status: "Active",
+      isDefault: true,
+      priority: 1,
+      addedDate: "30 Apr 2026",
+    },
+    {
       id: "pm-1",
       type: "payoneer",
       accountHolderName: "Abdul Rehman",
@@ -87,8 +111,8 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       country: "Pakistan",
       currency: "USD",
       status: "Active",
-      isDefault: true,
-      priority: 1,
+      isDefault: false,
+      priority: 2,
       addedDate: "Feb 11, 2026",
     },
   ])
@@ -148,11 +172,11 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     return () => clearInterval(interval)
   }, [withdrawalHistory])
 
-  const availableBalance = 9757.78
-  const pendingBalance = 0
-  const totalEarnings = 13984.42
+  const availableBalance = 864.28
+  const pendingBalance = 9757.78
+  const totalEarnings = 14848.70
   const totalPayments = 13377.05
-  const thisMonthEarnings = 9742.88
+  const thisMonthEarnings = 10607.16
   const lastMonthEarnings = 3085.50
   const nextWithdrawalDate = "14 Apr 2026"
   
