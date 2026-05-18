@@ -1,0 +1,505 @@
+live_chat:
+  enabled: true
+
+  support_agent:
+    name: "Daniel Carter"
+    status: "Online"
+    avatar: "DC"
+    last_active: "just now"
+
+  metadata:
+    support_connected: true
+    connection_status: "Support connected"
+    message_delivery: "Delivered"
+    total_conversations: 40
+
+  conversation:
+    - id: 1
+      sender: "user"
+      message: "Why is my withdrawal currently on hold?"
+      timestamp: "10:02 AM"
+      status: "Delivered"
+
+    - id: 2
+      sender: "support"
+      message: "Your withdrawal is temporarily on hold for 2–3 business days due to traffic stability verification."
+      timestamp: "10:03 AM"
+      status: "Seen"
+
+    - id: 3
+      sender: "user"
+      message: "What is the reason for the hold?"
+      timestamp: "10:04 AM"
+      status: "Delivered"
+
+    - id: 4
+      sender: "support"
+      message: "We detected unusual traffic fluctuations, including sudden spikes followed by traffic drops."
+      timestamp: "10:05 AM"
+      status: "Seen"
+
+    - id: 5
+      sender: "user"
+      message: "Is my account under review?"
+      timestamp: "10:06 AM"
+      status: "Delivered"
+
+    - id: 6
+      sender: "support"
+      message: "Yes, the traffic quality review process is currently active."
+      timestamp: "10:07 AM"
+      status: "Seen"
+
+    - id: 7
+      sender: "user"
+      message: "How long will the review take?"
+      timestamp: "10:08 AM"
+      status: "Delivered"
+
+    - id: 8
+      sender: "support"
+      message: "Normally 2–3 business days."
+      timestamp: "10:09 AM"
+      status: "Seen"
+
+    - id: 9
+      sender: "user"
+      message: "Can the hold duration increase?"
+      timestamp: "10:10 AM"
+      status: "Delivered"
+
+    - id: 10
+      sender: "support"
+      message: "Yes, if additional traffic inconsistencies are detected, the review period may be extended."
+      timestamp: "10:11 AM"
+      status: "Seen"
+
+    - id: 11
+      sender: "user"
+      message: "Will my withdrawal still be processed?"
+      timestamp: "10:12 AM"
+      status: "Delivered"
+
+    - id: 12
+      sender: "support"
+      message: "Yes, if the review is completed successfully."
+      timestamp: "10:13 AM"
+      status: "Seen"
+
+    - id: 13
+      sender: "user"
+      message: "Should I stop my traffic sources?"
+      timestamp: "10:14 AM"
+      status: "Delivered"
+
+    - id: 14
+      sender: "support"
+      message: "No, you should continue maintaining stable and organic traffic."
+      timestamp: "10:15 AM"
+      status: "Seen"
+
+    - id: 15
+      sender: "user"
+      message: "What type of traffic is recommended?"
+      timestamp: "10:16 AM"
+      status: "Delivered"
+
+    - id: 16
+      sender: "support"
+      message: "Organic SEO traffic and stable audience growth are recommended."
+      timestamp: "10:17 AM"
+      status: "Seen"
+
+    - id: 17
+      sender: "user"
+      message: "What caused the issue?"
+      timestamp: "10:18 AM"
+      status: "Delivered"
+
+    - id: 18
+      sender: "support"
+      message: "Sudden traffic spikes followed by inactive periods triggered the system review."
+      timestamp: "10:19 AM"
+      status: "Seen"
+
+    - id: 19
+      sender: "user"
+      message: "Can I speed up the review?"
+      timestamp: "10:20 AM"
+      status: "Delivered"
+
+    - id: 20
+      sender: "support"
+      message: "Reviews are handled automatically and cannot be manually expedited."
+      timestamp: "10:21 AM"
+      status: "Seen"
+
+    - id: 21
+      sender: "user"
+      message: "Is this a permanent issue?"
+      timestamp: "10:22 AM"
+      status: "Delivered"
+
+    - id: 22
+      sender: "support"
+      message: "No, this is usually temporary."
+      timestamp: "10:23 AM"
+      status: "Seen"
+
+    - id: 23
+      sender: "user"
+      message: "Will my account remain active?"
+      timestamp: "10:24 AM"
+      status: "Delivered"
+
+    - id: 24
+      sender: "support"
+      message: "Yes, your account remains active during the review."
+      timestamp: "10:25 AM"
+      status: "Seen"
+
+    - id: 25
+      sender: "user"
+      message: "Is traffic quality important?"
+      timestamp: "10:26 AM"
+      status: "Delivered"
+
+    - id: 26
+      sender: "support"
+      message: "Yes, traffic consistency and quality are important factors."
+      timestamp: "10:27 AM"
+      status: "Seen"
+
+    - id: 27
+      sender: "user"
+      message: "Should I continue SEO work?"
+      timestamp: "10:28 AM"
+      status: "Delivered"
+
+    - id: 28
+      sender: "support"
+      message: "Yes, continue improving your authority and SEO naturally."
+      timestamp: "10:29 AM"
+      status: "Seen"
+
+    - id: 29
+      sender: "user"
+      message: "Will my balance remain safe?"
+      timestamp: "10:30 AM"
+      status: "Delivered"
+
+    - id: 30
+      sender: "support"
+      message: "Yes, your balance remains secured during the review."
+      timestamp: "10:31 AM"
+      status: "Seen"
+
+    - id: 31
+      sender: "user"
+      message: "Can traffic drops trigger holds?"
+      timestamp: "10:32 AM"
+      status: "Delivered"
+
+    - id: 32
+      sender: "support"
+      message: "Yes, repeated interruptions in traffic flow may trigger automated checks."
+      timestamp: "10:33 AM"
+      status: "Seen"
+
+    - id: 33
+      sender: "user"
+      message: "What should I avoid?"
+      timestamp: "10:34 AM"
+      status: "Delivered"
+
+    - id: 34
+      sender: "support"
+      message: "Avoid unstable traffic patterns and inactive periods."
+      timestamp: "10:35 AM"
+      status: "Seen"
+
+    - id: 35
+      sender: "user"
+      message: "Can I create new withdrawals during review?"
+      timestamp: "10:36 AM"
+      status: "Delivered"
+
+    - id: 36
+      sender: "support"
+      message: "New withdrawal requests may remain pending until verification is completed."
+      timestamp: "10:37 AM"
+      status: "Seen"
+
+    - id: 37
+      sender: "user"
+      message: "Is manual verification required?"
+      timestamp: "10:38 AM"
+      status: "Delivered"
+
+    - id: 38
+      sender: "support"
+      message: "In some cases, additional verification may be requested."
+      timestamp: "10:39 AM"
+      status: "Seen"
+
+    - id: 39
+      sender: "user"
+      message: "Will notifications be sent?"
+      timestamp: "10:40 AM"
+      status: "Delivered"
+
+    - id: 40
+      sender: "support"
+      message: "Yes, updates will appear in your dashboard."
+      timestamp: "10:41 AM"
+      status: "Seen"
+
+    - id: 41
+      sender: "user"
+      message: "Why was traffic marked suspicious?"
+      timestamp: "10:42 AM"
+      status: "Delivered"
+
+    - id: 42
+      sender: "support"
+      message: "The system detected irregular traffic movement."
+      timestamp: "10:43 AM"
+      status: "Seen"
+
+    - id: 43
+      sender: "user"
+      message: "Can SEO improve account stability?"
+      timestamp: "10:44 AM"
+      status: "Delivered"
+
+    - id: 44
+      sender: "support"
+      message: "Yes, stable SEO traffic improves trust metrics."
+      timestamp: "10:45 AM"
+      status: "Seen"
+
+    - id: 45
+      sender: "user"
+      message: "Does traffic inactivity matter?"
+      timestamp: "10:46 AM"
+      status: "Delivered"
+
+    - id: 46
+      sender: "support"
+      message: "Yes, repeated inactivity periods may affect verification."
+      timestamp: "10:47 AM"
+      status: "Seen"
+
+    - id: 47
+      sender: "user"
+      message: "Can traffic sources be reviewed again later?"
+      timestamp: "10:48 AM"
+      status: "Delivered"
+
+    - id: 48
+      sender: "support"
+      message: "Yes, reviews may occur periodically."
+      timestamp: "10:49 AM"
+      status: "Seen"
+
+    - id: 49
+      sender: "user"
+      message: "Is this common?"
+      timestamp: "10:50 AM"
+      status: "Delivered"
+
+    - id: 50
+      sender: "support"
+      message: "Temporary reviews can occur on accounts with unusual traffic behavior."
+      timestamp: "10:51 AM"
+      status: "Seen"
+
+    - id: 51
+      sender: "user"
+      message: "Can my withdrawal fail?"
+      timestamp: "10:52 AM"
+      status: "Delivered"
+
+    - id: 52
+      sender: "support"
+      message: "Only if verification requirements are not met."
+      timestamp: "10:53 AM"
+      status: "Seen"
+
+    - id: 53
+      sender: "user"
+      message: "Should I increase traffic volume?"
+      timestamp: "10:54 AM"
+      status: "Delivered"
+
+    - id: 54
+      sender: "support"
+      message: "Focus on stable and natural traffic growth."
+      timestamp: "10:55 AM"
+      status: "Seen"
+
+    - id: 55
+      sender: "user"
+      message: "Is account authority important?"
+      timestamp: "10:56 AM"
+      status: "Delivered"
+
+    - id: 56
+      sender: "support"
+      message: "Yes, strong authority helps maintain account trust."
+      timestamp: "10:57 AM"
+      status: "Seen"
+
+    - id: 57
+      sender: "user"
+      message: "Can review status change automatically?"
+      timestamp: "10:58 AM"
+      status: "Delivered"
+
+    - id: 58
+      sender: "support"
+      message: "Yes, statuses update automatically after verification."
+      timestamp: "10:59 AM"
+      status: "Seen"
+
+    - id: 59
+      sender: "user"
+      message: "What happens after approval?"
+      timestamp: "11:00 AM"
+      status: "Delivered"
+
+    - id: 60
+      sender: "support"
+      message: "Your withdrawal will continue processing."
+      timestamp: "11:01 AM"
+      status: "Seen"
+
+    - id: 61
+      sender: "user"
+      message: "Can I contact support again?"
+      timestamp: "11:02 AM"
+      status: "Delivered"
+
+    - id: 62
+      sender: "support"
+      message: "Yes, live chat remains available."
+      timestamp: "11:03 AM"
+      status: "Seen"
+
+    - id: 63
+      sender: "user"
+      message: "Is there a fixed release date?"
+      timestamp: "11:04 AM"
+      status: "Delivered"
+
+    - id: 64
+      sender: "support"
+      message: "No fixed date is guaranteed during reviews."
+      timestamp: "11:05 AM"
+      status: "Seen"
+
+    - id: 65
+      sender: "user"
+      message: "Can multiple holds happen?"
+      timestamp: "11:06 AM"
+      status: "Delivered"
+
+    - id: 66
+      sender: "support"
+      message: "Yes, repeated traffic issues may trigger additional reviews."
+      timestamp: "11:07 AM"
+      status: "Seen"
+
+    - id: 67
+      sender: "user"
+      message: "Will pending status disappear?"
+      timestamp: "11:08 AM"
+      status: "Delivered"
+
+    - id: 68
+      sender: "support"
+      message: "Yes, after review completion."
+      timestamp: "11:09 AM"
+      status: "Seen"
+
+    - id: 69
+      sender: "user"
+      message: "Can traffic spikes affect payouts?"
+      timestamp: "11:10 AM"
+      status: "Delivered"
+
+    - id: 70
+      sender: "support"
+      message: "Yes, large fluctuations may temporarily affect processing."
+      timestamp: "11:11 AM"
+      status: "Seen"
+
+    - id: 71
+      sender: "user"
+      message: "Should I monitor analytics daily?"
+      timestamp: "11:12 AM"
+      status: "Delivered"
+
+    - id: 72
+      sender: "support"
+      message: "Yes, regular monitoring is recommended."
+      timestamp: "11:13 AM"
+      status: "Seen"
+
+    - id: 73
+      sender: "user"
+      message: "Can review delays happen?"
+      timestamp: "11:14 AM"
+      status: "Delivered"
+
+    - id: 74
+      sender: "support"
+      message: "Yes, depending on verification load."
+      timestamp: "11:15 AM"
+      status: "Seen"
+
+    - id: 75
+      sender: "user"
+      message: "Is organic growth safer?"
+      timestamp: "11:16 AM"
+      status: "Delivered"
+
+    - id: 76
+      sender: "support"
+      message: "Yes, organic growth is preferred."
+      timestamp: "11:17 AM"
+      status: "Seen"
+
+    - id: 77
+      sender: "user"
+      message: "Will support notify me after release?"
+      timestamp: "11:18 AM"
+      status: "Delivered"
+
+    - id: 78
+      sender: "support"
+      message: "Yes, dashboard notifications will update automatically."
+      timestamp: "11:19 AM"
+      status: "Seen"
+
+    - id: 79
+      sender: "user"
+      message: "What is the best way to avoid future holds?"
+      timestamp: "11:20 AM"
+      status: "Delivered"
+
+    - id: 80
+      sender: "support"
+      message: "Maintain consistent traffic quality, avoid sudden drops, and continue improving SEO authority."
+      timestamp: "11:21 AM"
+      status: "Seen"
+
+  features:
+    typing_animation: true
+    auto_reply: true
+    real_time_support: true
+    scroll_support: true
+    user_typing_enabled: true
+    message_delivery_tracking: true
+    seen_status_tracking: true
+    timestamp_display: true
