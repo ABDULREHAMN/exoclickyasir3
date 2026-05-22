@@ -65,26 +65,61 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
 
   const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
     {
-      id: "wd-30apr",
-      date: "30 Apr 2026",
-      method: "Crypto - TRC20",
-      amount: "$9,757.78",
+      id: "wd-23may",
+      date: "23 May 2026",
+      method: "Payoneer",
+      amount: "$19,159.54",
       status: "Pending",
-      details: "TZBnF1YuMZZxRFCtQrdUk695dh8cXdSMm1",
-      grossAmount: "$9,757.78",
+      details: "abdul.rehman.soashraf@gmail.com",
+      grossAmount: "$19,159.54",
       fee: "$0.00",
       feePercentage: 0,
-      processingTime: "1-2 hours",
-      notification: "Sent to Payoneer",
+      processingTime: "8-10 days",
     },
     {
       id: "wd-14apr",
       date: "14 Apr 2026",
       method: "Payoneer",
-      amount: "$7,915.22",
-      status: "Declined",
+      amount: "$11,310.00",
+      status: "Failed",
       details: "abdul.rehman.soashraf@gmail.com",
-      grossAmount: "$7,915.22",
+      grossAmount: "$11,310.00",
+      fee: "$0.00",
+      feePercentage: 0,
+      processingTime: "8-10 days",
+    },
+    {
+      id: "wd-29mar",
+      date: "29 Mar 2026",
+      method: "Payoneer",
+      amount: "$1,180.20",
+      status: "Completed",
+      details: "abdul.rehman.soashraf@gmail.com",
+      grossAmount: "$1,180.20",
+      fee: "$0.00",
+      feePercentage: 0,
+      processingTime: "8-10 days",
+    },
+    {
+      id: "wd-12mar",
+      date: "12 Mar 2026",
+      method: "Payoneer",
+      amount: "$961.00",
+      status: "Completed",
+      details: "abdul.rehman.soashraf@gmail.com",
+      grossAmount: "$961.00",
+      fee: "$0.00",
+      feePercentage: 0,
+      processingTime: "8-10 days",
+    },
+    {
+      id: "wd-25feb",
+      date: "25 Feb 2026",
+      method: "Payoneer",
+      amount: "$603.72",
+      status: "Completed",
+      details: "abdul.rehman.soashraf@gmail.com",
+      grossAmount: "$603.72",
       fee: "$0.00",
       feePercentage: 0,
       processingTime: "8-10 days",
@@ -173,7 +208,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     return () => clearInterval(interval)
   }, [withdrawalHistory])
 
-  const availableBalance = 1636.60
+  const availableBalance = 19159.54
   const pendingBalance = 9757.78
   const totalEarnings = 15621.02
   const totalPayments = 13377.05
