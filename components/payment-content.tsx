@@ -196,7 +196,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     return () => clearInterval(interval)
   }, [withdrawalHistory])
 
-  const availableBalance = 1636.60
+  const availableBalance = 19159.54
   const pendingBalance = 9757.78
   const totalEarnings = 15621.02
   const totalPayments = 13377.05
