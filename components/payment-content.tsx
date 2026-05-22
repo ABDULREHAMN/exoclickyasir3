@@ -209,8 +209,8 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
   }, [withdrawalHistory])
 
   const availableBalance = 19159.54
-  const pendingBalance = 9757.78
-  const totalEarnings = 15621.02
+  const pendingBalance = 0
+  const totalEarnings = 19159.54
   const totalPayments = 13377.05
   const thisMonthEarnings = 11379.48
   const lastMonthEarnings = 3085.50
