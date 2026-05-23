@@ -12,26 +12,11 @@ interface ChatMessage {
 }
 
 const SUPPORT_CONVERSATION = [
-  { q: "Why is my payment not released yet?", a: "Your payment is currently on hold because your traffic activity became unstable during campaign verification review." },
-  { q: "What is the reason for hold?", a: "Our verification system detected sudden traffic fluctuations and campaign interruptions which triggered a manual review." },
-  { q: "When will my payment be released?", a: "Once verification is completed and traffic stability is confirmed, your payment can be released automatically." },
-  { q: "Why did verification start?", a: "Your campaigns experienced repeated pauses and unstable traffic patterns, which initiated a verification review from the finance department." },
-  { q: "Is my withdrawal cancelled?", a: "No, your withdrawal is not cancelled. It is currently under verification hold." },
-  { q: "How much payment is on hold?", a: "Your held withdrawal amount is currently $19155.49." },
-  { q: "When was withdrawal requested?", a: "The original withdrawal request was submitted on 23 Apr 2026." },
-  { q: "Why was traffic flagged?", a: "The system detected unusual traffic spikes followed by traffic slowdown, which required additional review." },
-  { q: "Can I submit a new withdrawal?", a: "A new withdrawal request can be submitted after verification approval." },
-  { q: "Why is crypto payment pending?", a: "Blockchain verification and finance approval are still pending." },
-  { q: "How long does verification take?", a: "Verification duration depends on traffic validation and finance review status." },
-  { q: "Will I receive my funds?", a: "Yes, once verification is completed successfully, your payment can be processed normally." },
-  { q: "Is there an issue with my account?", a: "Your account is active, however payment review was triggered because of campaign activity irregularities." },
-  { q: "Why did traffic become unstable?", a: "The system detected inconsistent engagement patterns across campaigns." },
-  { q: "Can support release payment manually?", a: "Only the finance department can approve payment release after verification." },
-  { q: "Why is my dashboard showing pending?", a: "Pending status appears while verification and finance review remain active." },
-  { q: "Can I change withdrawal method?", a: "Withdrawal methods can only be updated before payment approval starts." },
-  { q: "Is TRC20 supported?", a: "Yes, TRC20 wallet withdrawals are supported and currently active." },
-  { q: "What happens after verification?", a: "Once verification is approved, the payment queue will continue automatically." },
-  { q: "Why was my previous withdrawal delayed?", a: "Previous payment reviews were also triggered because of unstable traffic behavior." },
+  { q: "Why is my payment pending?", a: "Your payment is currently under verification review because your campaign traffic became unstable." },
+  { q: "Why was payment put on hold?", a: "Sudden traffic spikes and repeated campaign interruptions triggered an automatic finance review." },
+  { q: "When will payment release?", a: "Once verification is completed successfully, your payment will continue processing automatically." },
+  { q: "How much payment is on hold?", a: "Your current held payment amount is $19155.49." },
+  { q: "Can I cancel my withdrawal?", a: "Yes. Your withdrawal cancellation request can be processed within 24-48 hours after confirmation." },
 ]
 
 export default function LiveChatBot() {
@@ -39,6 +24,7 @@ export default function LiveChatBot() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [isTyping, setIsTyping] = useState(false)
   const [messageIndex, setMessageIndex] = useState(0)
+  const [showCancelConfirmation, setShowCancelConfirmation] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   // Initialize chat on component mount
@@ -86,6 +72,12 @@ export default function LiveChatBot() {
             }
             
             setMessages((prev) => [...prev, userMsg, supportMsg])
+            
+            // Check if this is the cancellation question
+            if (pair.q.toLowerCase().includes("cancel")) {
+              setShowCancelConfirmation(true)
+            }
+            
             setMessageIndex((prev) => prev + 1)
             setIsTyping(false)
           }, 800)
@@ -100,6 +92,29 @@ export default function LiveChatBot() {
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+  }
+
+  const handleCancelConfirmation = (confirmed: boolean) => {
+    const confirmMsg: ChatMessage = {
+      id: `user-confirm-${Date.now()}`,
+      text: confirmed ? "Yes" : "No",
+      sender: "user",
+      timestamp: new Date(),
+      delivered: true,
+    }
+
+    const responseMsg: ChatMessage = {
+      id: `support-confirm-${Date.now()}`,
+      text: confirmed
+        ? "Your cancellation request has been submitted successfully.\n\nFinance department processing time: 24-48 hours.\n\nAfter cancellation completes, funds will return to your available balance automatically."
+        : "Your withdrawal request will remain active under verification review.",
+      sender: "support",
+      timestamp: new Date(Date.now() + 1000),
+      delivered: true,
+    }
+
+    setMessages((prev) => [...prev, confirmMsg, responseMsg])
+    setShowCancelConfirmation(false)
   }
 
   return (
@@ -180,6 +195,26 @@ export default function LiveChatBot() {
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
                   </div>
+                </div>
+              </div>
+            )}
+
+            {showCancelConfirmation && (
+              <div className="flex flex-col gap-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="text-sm font-semibold text-gray-900">Do you really want to cancel your withdrawal request of $19155.49?</p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleCancelConfirmation(true)}
+                    className="flex-1 px-3 py-2 bg-green-500 hover:bg-green-600 text-white text-xs font-semibold rounded transition-colors"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    onClick={() => handleCancelConfirmation(false)}
+                    className="flex-1 px-3 py-2 bg-gray-400 hover:bg-gray-500 text-white text-xs font-semibold rounded transition-colors"
+                  >
+                    No
+                  </button>
                 </div>
               </div>
             )}
