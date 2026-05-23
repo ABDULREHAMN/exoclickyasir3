@@ -25,7 +25,7 @@ export function ProfilePage({ onBack }: ProfilePageProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [profileData, setProfileData] = useState({
     fullName: "Yasir Ali",
-    email: "update_required@example.com",
+    email: "shahzadiqbal0876@gmail.com",
     username: "yasirali009",
     company: "",
     phone: "",
