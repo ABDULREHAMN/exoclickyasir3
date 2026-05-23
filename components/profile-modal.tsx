@@ -16,7 +16,7 @@ export function ProfileModal({ isOpen, onClose }: ProfileModalProps) {
 
   const profileData = {
     fullName: "Yasir Ali",
-    email: "update_required@example.com",
+    email: "shahzadiqbal0876@gmail.com",
     username: "yasirali009",
     company: "Tech Blogi",
     phone: "+923227607144",
