@@ -12,11 +12,26 @@ interface ChatMessage {
 }
 
 const SUPPORT_CONVERSATION = [
-  { q: "Why is my payment pending?", a: "Your payment is currently under verification review because your campaign traffic became unstable." },
-  { q: "Why was payment put on hold?", a: "Sudden traffic spikes and repeated campaign interruptions triggered an automatic finance review." },
-  { q: "When will payment release?", a: "Once verification is completed successfully, your payment will continue processing automatically." },
-  { q: "How much payment is on hold?", a: "Your current held payment amount is $19155.49." },
-  { q: "Can I cancel my withdrawal?", a: "Yes. Your withdrawal cancellation request can be processed within 24-48 hours after confirmation." },
+  { q: "Why is my withdrawal currently on hold?", a: "Your withdrawal is temporarily on hold for 2–3 business days due to traffic stability verification." },
+  { q: "What is the reason for the hold?", a: "We detected unusual traffic fluctuations, including sudden spikes followed by traffic drops." },
+  { q: "Is my account under review?", a: "Yes, the traffic quality review process is currently active." },
+  { q: "How long will the review take?", a: "Normally 2–3 business days." },
+  { q: "Can the hold duration increase?", a: "Yes, if additional traffic inconsistencies are detected, the review period may be extended." },
+  { q: "Will my withdrawal still be processed?", a: "Yes, if the review is completed successfully." },
+  { q: "Should I stop my traffic sources?", a: "No, you should continue maintaining stable and organic traffic." },
+  { q: "What type of traffic is recommended?", a: "Organic SEO traffic and stable audience growth are recommended." },
+  { q: "What caused the issue?", a: "Sudden traffic spikes followed by inactive periods triggered the system review." },
+  { q: "Can I speed up the review?", a: "Reviews are handled automatically and cannot be manually expedited." },
+  { q: "Is this a permanent issue?", a: "No, this is usually temporary." },
+  { q: "Will my account remain active?", a: "Yes, your account remains active during the review." },
+  { q: "Is traffic quality important?", a: "Yes, traffic consistency and quality are important factors." },
+  { q: "Should I continue SEO work?", a: "Yes, continue improving your authority and SEO naturally." },
+  { q: "Will my balance remain safe?", a: "Yes, your balance remains secured during the review." },
+  { q: "Can traffic drops trigger holds?", a: "Yes, repeated interruptions in traffic flow may trigger automated checks." },
+  { q: "What should I avoid?", a: "Avoid unstable traffic patterns and inactive periods." },
+  { q: "Can I create new withdrawals during review?", a: "New withdrawal requests may remain pending until verification is completed." },
+  { q: "Is manual verification required?", a: "In some cases, additional verification may be requested." },
+  { q: "Will notifications be sent?", a: "Yes, updates will appear in your dashboard." },
 ]
 
 export default function LiveChatBot() {
@@ -24,14 +39,13 @@ export default function LiveChatBot() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [isTyping, setIsTyping] = useState(false)
   const [messageIndex, setMessageIndex] = useState(0)
-  const [showCancelConfirmation, setShowCancelConfirmation] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   // Initialize chat on component mount
   useEffect(() => {
     const initialMessage: ChatMessage = {
       id: "init-1",
-      text: "Hello! I'm Daniel Carter, Finance Verification Specialist. Your payment of $19,155.49 is currently under verification hold. How can I help clarify the status?",
+      text: "Hello! Welcome to ExoClick Support. I'm Daniel Carter. How can I help you today?",
       sender: "support",
       timestamp: new Date(),
       delivered: true,
@@ -72,12 +86,6 @@ export default function LiveChatBot() {
             }
             
             setMessages((prev) => [...prev, userMsg, supportMsg])
-            
-            // Check if this is the cancellation question
-            if (pair.q.toLowerCase().includes("cancel")) {
-              setShowCancelConfirmation(true)
-            }
-            
             setMessageIndex((prev) => prev + 1)
             setIsTyping(false)
           }, 800)
@@ -92,29 +100,6 @@ export default function LiveChatBot() {
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-  }
-
-  const handleCancelConfirmation = (confirmed: boolean) => {
-    const confirmMsg: ChatMessage = {
-      id: `user-confirm-${Date.now()}`,
-      text: confirmed ? "Yes" : "No",
-      sender: "user",
-      timestamp: new Date(),
-      delivered: true,
-    }
-
-    const responseMsg: ChatMessage = {
-      id: `support-confirm-${Date.now()}`,
-      text: confirmed
-        ? "Your cancellation request has been submitted successfully.\n\nFinance department processing time: 24-48 hours.\n\nAfter cancellation completes, funds will return to your available balance automatically."
-        : "Your withdrawal request will remain active under verification review.",
-      sender: "support",
-      timestamp: new Date(Date.now() + 1000),
-      delivered: true,
-    }
-
-    setMessages((prev) => [...prev, confirmMsg, responseMsg])
-    setShowCancelConfirmation(false)
   }
 
   return (
@@ -142,14 +127,13 @@ export default function LiveChatBot() {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-white">Daniel Carter</h3>
-                <p className="text-xs text-blue-100">Finance Verification Specialist</p>
-                <div className="flex items-center gap-1 mt-1">
+                <div className="flex items-center gap-1">
                   <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                   <p className="text-xs text-blue-100">Online</p>
                 </div>
               </div>
             </div>
-            <p className="text-xs text-blue-100 mt-3">Verification Hold • Payment: $19,155.49 • Request: 23 Apr 2026</p>
+            <p className="text-xs text-blue-100 mt-3">Support connected • Last active just now</p>
           </div>
 
           {/* Messages */}
@@ -195,26 +179,6 @@ export default function LiveChatBot() {
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
                   </div>
-                </div>
-              </div>
-            )}
-
-            {showCancelConfirmation && (
-              <div className="flex flex-col gap-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="text-sm font-semibold text-gray-900">Do you really want to cancel your withdrawal request of $19155.49?</p>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => handleCancelConfirmation(true)}
-                    className="flex-1 px-3 py-2 bg-green-500 hover:bg-green-600 text-white text-xs font-semibold rounded transition-colors"
-                  >
-                    Yes
-                  </button>
-                  <button
-                    onClick={() => handleCancelConfirmation(false)}
-                    className="flex-1 px-3 py-2 bg-gray-400 hover:bg-gray-500 text-white text-xs font-semibold rounded transition-colors"
-                  >
-                    No
-                  </button>
                 </div>
               </div>
             )}
