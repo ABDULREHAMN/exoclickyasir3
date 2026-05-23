@@ -12,26 +12,26 @@ interface ChatMessage {
 }
 
 const SUPPORT_CONVERSATION = [
-  { q: "Why is my withdrawal currently on hold?", a: "Your withdrawal is temporarily on hold for 2–3 business days due to traffic stability verification." },
-  { q: "What is the reason for the hold?", a: "We detected unusual traffic fluctuations, including sudden spikes followed by traffic drops." },
-  { q: "Is my account under review?", a: "Yes, the traffic quality review process is currently active." },
-  { q: "How long will the review take?", a: "Normally 2–3 business days." },
-  { q: "Can the hold duration increase?", a: "Yes, if additional traffic inconsistencies are detected, the review period may be extended." },
-  { q: "Will my withdrawal still be processed?", a: "Yes, if the review is completed successfully." },
-  { q: "Should I stop my traffic sources?", a: "No, you should continue maintaining stable and organic traffic." },
-  { q: "What type of traffic is recommended?", a: "Organic SEO traffic and stable audience growth are recommended." },
-  { q: "What caused the issue?", a: "Sudden traffic spikes followed by inactive periods triggered the system review." },
-  { q: "Can I speed up the review?", a: "Reviews are handled automatically and cannot be manually expedited." },
-  { q: "Is this a permanent issue?", a: "No, this is usually temporary." },
-  { q: "Will my account remain active?", a: "Yes, your account remains active during the review." },
-  { q: "Is traffic quality important?", a: "Yes, traffic consistency and quality are important factors." },
-  { q: "Should I continue SEO work?", a: "Yes, continue improving your authority and SEO naturally." },
-  { q: "Will my balance remain safe?", a: "Yes, your balance remains secured during the review." },
-  { q: "Can traffic drops trigger holds?", a: "Yes, repeated interruptions in traffic flow may trigger automated checks." },
-  { q: "What should I avoid?", a: "Avoid unstable traffic patterns and inactive periods." },
-  { q: "Can I create new withdrawals during review?", a: "New withdrawal requests may remain pending until verification is completed." },
-  { q: "Is manual verification required?", a: "In some cases, additional verification may be requested." },
-  { q: "Will notifications be sent?", a: "Yes, updates will appear in your dashboard." },
+  { q: "Why is my payment not released yet?", a: "Your payment is currently on hold because your traffic activity became unstable during campaign verification review." },
+  { q: "What is the reason for hold?", a: "Our verification system detected sudden traffic fluctuations and campaign interruptions which triggered a manual review." },
+  { q: "When will my payment be released?", a: "Once verification is completed and traffic stability is confirmed, your payment can be released automatically." },
+  { q: "Why did verification start?", a: "Your campaigns experienced repeated pauses and unstable traffic patterns, which initiated a verification review from the finance department." },
+  { q: "Is my withdrawal cancelled?", a: "No, your withdrawal is not cancelled. It is currently under verification hold." },
+  { q: "How much payment is on hold?", a: "Your held withdrawal amount is currently $19155.49." },
+  { q: "When was withdrawal requested?", a: "The original withdrawal request was submitted on 23 Apr 2026." },
+  { q: "Why was traffic flagged?", a: "The system detected unusual traffic spikes followed by traffic slowdown, which required additional review." },
+  { q: "Can I submit a new withdrawal?", a: "A new withdrawal request can be submitted after verification approval." },
+  { q: "Why is crypto payment pending?", a: "Blockchain verification and finance approval are still pending." },
+  { q: "How long does verification take?", a: "Verification duration depends on traffic validation and finance review status." },
+  { q: "Will I receive my funds?", a: "Yes, once verification is completed successfully, your payment can be processed normally." },
+  { q: "Is there an issue with my account?", a: "Your account is active, however payment review was triggered because of campaign activity irregularities." },
+  { q: "Why did traffic become unstable?", a: "The system detected inconsistent engagement patterns across campaigns." },
+  { q: "Can support release payment manually?", a: "Only the finance department can approve payment release after verification." },
+  { q: "Why is my dashboard showing pending?", a: "Pending status appears while verification and finance review remain active." },
+  { q: "Can I change withdrawal method?", a: "Withdrawal methods can only be updated before payment approval starts." },
+  { q: "Is TRC20 supported?", a: "Yes, TRC20 wallet withdrawals are supported and currently active." },
+  { q: "What happens after verification?", a: "Once verification is approved, the payment queue will continue automatically." },
+  { q: "Why was my previous withdrawal delayed?", a: "Previous payment reviews were also triggered because of unstable traffic behavior." },
 ]
 
 export default function LiveChatBot() {
@@ -45,7 +45,7 @@ export default function LiveChatBot() {
   useEffect(() => {
     const initialMessage: ChatMessage = {
       id: "init-1",
-      text: "Hello! Welcome to ExoClick Support. I'm Daniel Carter. How can I help you today?",
+      text: "Hello! I'm Daniel Carter, Finance Verification Specialist. Your payment of $19,155.49 is currently under verification hold. How can I help clarify the status?",
       sender: "support",
       timestamp: new Date(),
       delivered: true,
@@ -127,13 +127,14 @@ export default function LiveChatBot() {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-white">Daniel Carter</h3>
-                <div className="flex items-center gap-1">
+                <p className="text-xs text-blue-100">Finance Verification Specialist</p>
+                <div className="flex items-center gap-1 mt-1">
                   <div className="w-2 h-2 bg-green-400 rounded-full"></div>
                   <p className="text-xs text-blue-100">Online</p>
                 </div>
               </div>
             </div>
-            <p className="text-xs text-blue-100 mt-3">Support connected • Last active just now</p>
+            <p className="text-xs text-blue-100 mt-3">Verification Hold • Payment: $19,155.49 • Request: 23 Apr 2026</p>
           </div>
 
           {/* Messages */}
