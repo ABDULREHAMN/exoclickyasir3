@@ -70,7 +70,7 @@ export default function LiveChatBot() {
   useEffect(() => {
     const initialMessage: ChatMessage = {
       id: "init-1",
-      text: "Hello! I'm Michael Carter from our US Support team. I'm here to help you with your pending withdrawal of $19,145.49. How can I assist you today?",
+      text: "Hello 👋\n\nWelcome to ExoClick Live Support.\n\nHow can we help you today?\n\nA support agent will reply shortly.",
       sender: "support",
       timestamp: new Date(),
       delivered: true,
@@ -174,7 +174,7 @@ export default function LiveChatBot() {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-green-600 hover:bg-green-700 shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110"
+        className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-blue-600 hover:bg-blue-700 shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110"
       >
         {isOpen ? (
           <X className="h-6 w-6 text-white" />
@@ -187,7 +187,11 @@ export default function LiveChatBot() {
       {isOpen && (
         <div className="fixed bottom-24 right-6 z-40 w-96 bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden md:w-80 sm:w-72">
           {/* Header */}
-          <div className="bg-gradient-to-r from-green-600 to-green-700 p-4">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4">
+            <div className="mb-3">
+              <h2 className="text-white font-bold text-lg">ExoClick Live Support</h2>
+              <p className="text-xs text-blue-100">Get instant help from our team</p>
+            </div>
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
                 <span className="text-white font-bold text-sm">MC</span>
@@ -195,12 +199,12 @@ export default function LiveChatBot() {
               <div className="flex-1">
                 <h3 className="font-semibold text-white">Michael Carter</h3>
                 <div className="flex items-center gap-1">
-                  <div className="w-2 h-2 bg-green-300 rounded-full"></div>
-                  <p className="text-xs text-green-100">Online - US Support</p>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <p className="text-xs text-blue-100">Online</p>
                 </div>
               </div>
             </div>
-            <p className="text-xs text-green-100 mt-3">Withdrawal: $19,145.49 • Pending Verification</p>
+            <p className="text-xs text-blue-100 mt-3">Withdrawal: $19,145.49 • Pending Verification</p>
           </div>
 
           {/* Messages */}
@@ -211,21 +215,21 @@ export default function LiveChatBot() {
                 className={`flex gap-3 ${msg.sender === "user" ? "flex-row-reverse" : "flex-row"}`}
               >
                 {msg.sender === "support" && (
-                  <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
                     <span className="text-white font-bold text-xs">MC</span>
                   </div>
                 )}
                 <div
-                  className={`max-w-xs rounded-lg px-4 py-2 text-sm ${
+                  className={`max-w-xs rounded-lg px-4 py-2 text-sm whitespace-pre-wrap ${
                     msg.sender === "user"
-                      ? "bg-green-600 text-white rounded-br-none"
+                      ? "bg-blue-600 text-white rounded-br-none"
                       : "bg-white border border-gray-200 text-gray-900 rounded-bl-none"
                   }`}
                 >
                   {msg.text}
                   <div
                     className={`text-xs mt-1 ${
-                      msg.sender === "user" ? "text-green-100" : "text-gray-400"
+                      msg.sender === "user" ? "text-blue-100" : "text-gray-400"
                     }`}
                   >
                     {formatTime(msg.timestamp)}
@@ -238,7 +242,7 @@ export default function LiveChatBot() {
 
             {isTyping && (
               <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
                   <span className="text-white font-bold text-xs">MC</span>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg rounded-bl-none px-4 py-2">
@@ -259,7 +263,7 @@ export default function LiveChatBot() {
 
             {showCancelConfirm && (
               <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
                   <span className="text-white font-bold text-xs">MC</span>
                 </div>
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg rounded-bl-none px-4 py-3">
@@ -300,12 +304,12 @@ export default function LiveChatBot() {
               onChange={(e) => setUserInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
               placeholder="Ask about your withdrawal..."
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
             <button
               onClick={handleSendMessage}
               disabled={!userInput.trim()}
-              className="p-2 bg-green-600 hover:bg-green-700 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
               <Send className="h-4 w-4" />
             </button>
