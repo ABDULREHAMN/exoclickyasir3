@@ -1,0 +1,478 @@
+live_chat:
+  enabled: true
+
+support_header:
+  title: "ExoClick Live Support"
+  theme: "blue"
+  subtitle: "Get instant help from our team"
+
+support_agent:
+  name: "Michael Carter"
+  status: "Online"
+  last_active: "Just now"
+  avatar_initials: "MC"
+
+first_message:
+  message: "Hello 👋\n\nWelcome to ExoClick Live Support.\n\nHow can we help you today?\n\nA support agent will reply shortly."
+  timestamp: "automatic"
+  auto_show: true
+
+conversation:
+  - id: 1
+    sender: "user"
+    message: "Why is my payment still pending?"
+    timestamp: "10:02 AM"
+    status: "Delivered"
+  
+  - id: 2
+    sender: "support"
+    message: "Your payment is currently under verification review due to unstable traffic activity detected on recent campaigns."
+    timestamp: "10:03 AM"
+    status: "Seen"
+
+  - id: 3
+    sender: "user"
+    message: "When will my payment be released?"
+    timestamp: "10:04 AM"
+    status: "Delivered"
+
+  - id: 4
+    sender: "support"
+    message: "Normally verification reviews are completed within 2–3 business days."
+    timestamp: "10:05 AM"
+    status: "Seen"
+
+  - id: 5
+    sender: "user"
+    message: "Why was my withdrawal placed on hold?"
+    timestamp: "10:06 AM"
+    status: "Delivered"
+
+  - id: 6
+    sender: "support"
+    message: "The system detected unusual traffic fluctuations and campaign interruptions."
+    timestamp: "10:07 AM"
+    status: "Seen"
+
+  - id: 7
+    sender: "user"
+    message: "What kind of traffic issue was detected?"
+    timestamp: "10:08 AM"
+    status: "Delivered"
+
+  - id: 8
+    sender: "support"
+    message: "Your traffic showed sudden spikes followed by slow or inactive periods."
+    timestamp: "10:09 AM"
+    status: "Seen"
+
+  - id: 9
+    sender: "user"
+    message: "Is my account suspended?"
+    timestamp: "10:10 AM"
+    status: "Delivered"
+
+  - id: 10
+    sender: "support"
+    message: "No, your account remains active during verification."
+    timestamp: "10:11 AM"
+    status: "Seen"
+
+  - id: 11
+    sender: "user"
+    message: "Can my payment still be approved?"
+    timestamp: "10:12 AM"
+    status: "Delivered"
+
+  - id: 12
+    sender: "support"
+    message: "Yes, once the verification process is completed successfully."
+    timestamp: "10:13 AM"
+    status: "Seen"
+
+  - id: 13
+    sender: "user"
+    message: "What is the current status of my withdrawal?"
+    timestamp: "10:14 AM"
+    status: "Delivered"
+
+  - id: 14
+    sender: "support"
+    message: "Your withdrawal is currently pending verification review."
+    timestamp: "10:15 AM"
+    status: "Seen"
+
+  - id: 15
+    sender: "user"
+    message: "Why does traffic stability matter?"
+    timestamp: "10:16 AM"
+    status: "Delivered"
+
+  - id: 16
+    sender: "support"
+    message: "Stable traffic helps maintain account quality and payment verification standards."
+    timestamp: "10:17 AM"
+    status: "Seen"
+
+  - id: 17
+    sender: "user"
+    message: "Should I stop my campaigns?"
+    timestamp: "10:18 AM"
+    status: "Delivered"
+
+  - id: 18
+    sender: "support"
+    message: "No, you should continue maintaining stable and organic traffic activity."
+    timestamp: "10:19 AM"
+    status: "Seen"
+
+  - id: 19
+    sender: "user"
+    message: "Can SEO traffic help my account?"
+    timestamp: "10:20 AM"
+    status: "Delivered"
+
+  - id: 20
+    sender: "support"
+    message: "Yes, consistent SEO traffic improves overall account trust and stability."
+    timestamp: "10:21 AM"
+    status: "Seen"
+
+  - id: 21
+    sender: "user"
+    message: "What caused the verification review?"
+    timestamp: "10:22 AM"
+    status: "Delivered"
+
+  - id: 22
+    sender: "support"
+    message: "Multiple campaign interruptions triggered automatic verification checks."
+    timestamp: "10:23 AM"
+    status: "Seen"
+
+  - id: 23
+    sender: "user"
+    message: "Will the hold be extended again?"
+    timestamp: "10:24 AM"
+    status: "Delivered"
+
+  - id: 24
+    sender: "support"
+    message: "If additional traffic inconsistencies are detected, the review period may increase."
+    timestamp: "10:25 AM"
+    status: "Seen"
+
+  - id: 25
+    sender: "user"
+    message: "How long can verification take?"
+    timestamp: "10:26 AM"
+    status: "Delivered"
+
+  - id: 26
+    sender: "support"
+    message: "Most reviews are completed within 2–3 business days."
+    timestamp: "10:27 AM"
+    status: "Seen"
+
+  - id: 27
+    sender: "user"
+    message: "Can I speed up the payment release?"
+    timestamp: "10:28 AM"
+    status: "Delivered"
+
+  - id: 28
+    sender: "support"
+    message: "Verification reviews are processed automatically and cannot be manually accelerated."
+    timestamp: "10:29 AM"
+    status: "Seen"
+
+  - id: 29
+    sender: "user"
+    message: "Is my balance safe during review?"
+    timestamp: "10:30 AM"
+    status: "Delivered"
+
+  - id: 30
+    sender: "support"
+    message: "Yes, your account balance remains secure during verification."
+    timestamp: "10:31 AM"
+    status: "Seen"
+
+  - id: 31
+    sender: "user"
+    message: "Why did traffic spikes affect my withdrawal?"
+    timestamp: "10:32 AM"
+    status: "Delivered"
+
+  - id: 32
+    sender: "support"
+    message: "Sudden traffic spikes may trigger additional automated quality checks."
+    timestamp: "10:33 AM"
+    status: "Seen"
+
+  - id: 33
+    sender: "user"
+    message: "What traffic source is recommended?"
+    timestamp: "10:34 AM"
+    status: "Delivered"
+
+  - id: 34
+    sender: "support"
+    message: "Organic and stable traffic sources are recommended for long-term account stability."
+    timestamp: "10:35 AM"
+    status: "Seen"
+
+  - id: 35
+    sender: "user"
+    message: "Will I receive a dashboard notification?"
+    timestamp: "10:36 AM"
+    status: "Delivered"
+
+  - id: 36
+    sender: "support"
+    message: "Yes, status updates will appear automatically on your dashboard."
+    timestamp: "10:37 AM"
+    status: "Seen"
+
+  - id: 37
+    sender: "user"
+    message: "Can new withdrawals be delayed too?"
+    timestamp: "10:38 AM"
+    status: "Delivered"
+
+  - id: 38
+    sender: "support"
+    message: "Yes, additional withdrawal requests may remain pending during review."
+    timestamp: "10:39 AM"
+    status: "Seen"
+
+  - id: 39
+    sender: "user"
+    message: "Is the finance department reviewing my payment?"
+    timestamp: "10:40 AM"
+    status: "Delivered"
+
+  - id: 40
+    sender: "support"
+    message: "Yes, payment verification is handled by the finance department."
+    timestamp: "10:41 AM"
+    status: "Seen"
+
+  - id: 41
+    sender: "user"
+    message: "Why was my payment request restarted?"
+    timestamp: "10:42 AM"
+    status: "Delivered"
+
+  - id: 42
+    sender: "support"
+    message: "Your withdrawal request was refreshed after additional verification checks."
+    timestamp: "10:43 AM"
+    status: "Seen"
+
+  - id: 43
+    sender: "user"
+    message: "What amount is currently under review?"
+    timestamp: "10:44 AM"
+    status: "Delivered"
+
+  - id: 44
+    sender: "support"
+    message: "The current withdrawal amount under verification is $19,145.49."
+    timestamp: "10:45 AM"
+    status: "Seen"
+
+  - id: 45
+    sender: "user"
+    message: "When was the withdrawal requested?"
+    timestamp: "10:46 AM"
+    status: "Delivered"
+
+  - id: 46
+    sender: "support"
+    message: "The withdrawal request was originally submitted on 23 Apr 2026."
+    timestamp: "10:47 AM"
+    status: "Seen"
+
+  - id: 47
+    sender: "user"
+    message: "Why did traffic suddenly stop?"
+    timestamp: "10:48 AM"
+    status: "Delivered"
+
+  - id: 48
+    sender: "support"
+    message: "Campaign interruptions and inconsistent traffic activity were detected."
+    timestamp: "10:49 AM"
+    status: "Seen"
+
+  - id: 49
+    sender: "user"
+    message: "Can low traffic affect payouts?"
+    timestamp: "10:50 AM"
+    status: "Delivered"
+
+  - id: 50
+    sender: "support"
+    message: "Yes, unstable traffic behavior may temporarily affect payment processing."
+    timestamp: "10:51 AM"
+    status: "Seen"
+
+  - id: 51
+    sender: "user"
+    message: "What should I avoid during review?"
+    timestamp: "10:52 AM"
+    status: "Delivered"
+
+  - id: 52
+    sender: "support"
+    message: "Avoid repeated campaign interruptions and unstable traffic sources."
+    timestamp: "10:53 AM"
+    status: "Seen"
+
+  - id: 53
+    sender: "user"
+    message: "Will payment automatically release after review?"
+    timestamp: "10:54 AM"
+    status: "Delivered"
+
+  - id: 54
+    sender: "support"
+    message: "Yes, approved withdrawals continue automatically after verification completion."
+    timestamp: "10:55 AM"
+    status: "Seen"
+
+  - id: 55
+    sender: "user"
+    message: "Can verification happen again later?"
+    timestamp: "10:56 AM"
+    status: "Delivered"
+
+  - id: 56
+    sender: "support"
+    message: "Yes, future verification checks may occur automatically."
+    timestamp: "10:57 AM"
+    status: "Seen"
+
+  - id: 57
+    sender: "user"
+    message: "Is manual verification required?"
+    timestamp: "10:58 AM"
+    status: "Delivered"
+
+  - id: 58
+    sender: "support"
+    message: "In some cases additional verification may be requested by the finance department."
+    timestamp: "10:59 AM"
+    status: "Seen"
+
+  - id: 59
+    sender: "user"
+    message: "Can I cancel my withdrawal request?"
+    timestamp: "11:00 AM"
+    status: "Delivered"
+
+  - id: 60
+    sender: "support"
+    message: "Yes, cancellation requests may take 24–48 hours to process after confirmation."
+    timestamp: "11:01 AM"
+    status: "Seen"
+
+  - id: 61
+    sender: "user"
+    message: "Previously support told me the review would take 2–3 business days. Why is it taking longer now?"
+    timestamp: "11:02 AM"
+    status: "Delivered"
+
+  - id: 62
+    sender: "support"
+    message: "Your verification processing time has increased because additional traffic verification checks are currently being performed on your recent campaign activity."
+    timestamp: "11:03 AM"
+    status: "Seen"
+
+  - id: 63
+    sender: "user"
+    message: "Why was the verification period extended again?"
+    timestamp: "11:04 AM"
+    status: "Delivered"
+
+  - id: 64
+    sender: "support"
+    message: "The system detected further traffic inconsistencies during the ongoing review process, which extended the verification duration."
+    timestamp: "11:05 AM"
+    status: "Seen"
+
+  - id: 65
+    sender: "user"
+    message: "Does this mean my payment has failed?"
+    timestamp: "11:06 AM"
+    status: "Delivered"
+
+  - id: 66
+    sender: "support"
+    message: "No, your payment has not failed. It is still under verification processing."
+    timestamp: "11:07 AM"
+    status: "Seen"
+
+  - id: 67
+    sender: "user"
+    message: "Can the finance department manually release my payment faster?"
+    timestamp: "11:08 AM"
+    status: "Delivered"
+
+  - id: 68
+    sender: "support"
+    message: "Verification reviews follow an automated process and cannot be manually accelerated during active checks."
+    timestamp: "11:09 AM"
+    status: "Seen"
+
+  - id: 69
+    sender: "user"
+    message: "Will I receive another notification if the review time increases again?"
+    timestamp: "11:10 AM"
+    status: "Delivered"
+
+  - id: 70
+    sender: "support"
+    message: "Yes, any important status updates will appear automatically in your dashboard notifications."
+    timestamp: "11:11 AM"
+    status: "Seen"
+
+  - id: 71
+    sender: "user"
+    message: "Is the delay happening because traffic stopped again?"
+    timestamp: "11:12 AM"
+    status: "Delivered"
+
+  - id: 72
+    sender: "support"
+    message: "The review extension was triggered due to repeated traffic instability and campaign interruptions detected during verification."
+    timestamp: "11:13 AM"
+    status: "Seen"
+
+conversation_metadata:
+  total_messages: 72
+  total_pairs: 36
+  topics:
+    - "Withdrawal pending"
+    - "Verification review"
+    - "Traffic instability"
+    - "Campaign interruptions"
+    - "SEO traffic"
+    - "Payment release timing"
+    - "Dashboard notifications"
+    - "Finance department checks"
+    - "Withdrawal cancellation requests"
+    - "Extended verification processing"
+  created_date: "2026-05-23"
+  version: "1.0"
+
+chat_features:
+  typing_animation: true
+  auto_scroll: true
+  message_timestamps: true
+  delivered_seen_labels: true
+  mobile_responsive: true
+  dark_light_mode: true
+  typing_delay_ms: 1000
+  message_sequence_enabled: true
