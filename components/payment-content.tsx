@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect } from "react"
+import { mockDashboardData } from "@/lib/mockData"
 import {
   Wallet,
   Mail,
@@ -63,68 +64,9 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
   const [selectedPaymentEntry, setSelectedPaymentEntry] = useState<any>(null)
   const { kycStatus, openKycPromptModal } = useKyc()
 
-  const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>([
-    {
-      id: "wd-23may",
-      date: "23 May 2026",
-      method: "Payoneer",
-      amount: "$19,159.54",
-      status: "Cancelled",
-      details: "abdul.rehman.soashraf@gmail.com",
-      grossAmount: "$19,159.54",
-      fee: "$0.00",
-      feePercentage: 0,
-      processingTime: "8-10 days",
-    },
-    {
-      id: "wd-14apr",
-      date: "14 Apr 2026",
-      method: "Payoneer",
-      amount: "$11,310.00",
-      status: "Failed",
-      details: "abdul.rehman.soashraf@gmail.com",
-      grossAmount: "$11,310.00",
-      fee: "$0.00",
-      feePercentage: 0,
-      processingTime: "8-10 days",
-    },
-    {
-      id: "wd-29mar",
-      date: "29 Mar 2026",
-      method: "Payoneer",
-      amount: "$1,180.20",
-      status: "Completed",
-      details: "abdul.rehman.soashraf@gmail.com",
-      grossAmount: "$1,180.20",
-      fee: "$0.00",
-      feePercentage: 0,
-      processingTime: "8-10 days",
-    },
-    {
-      id: "wd-12mar",
-      date: "12 Mar 2026",
-      method: "Payoneer",
-      amount: "$961.00",
-      status: "Completed",
-      details: "abdul.rehman.soashraf@gmail.com",
-      grossAmount: "$961.00",
-      fee: "$0.00",
-      feePercentage: 0,
-      processingTime: "8-10 days",
-    },
-    {
-      id: "wd-25feb",
-      date: "25 Feb 2026",
-      method: "Payoneer",
-      amount: "$603.72",
-      status: "Completed",
-      details: "abdul.rehman.soashraf@gmail.com",
-      grossAmount: "$603.72",
-      fee: "$0.00",
-      feePercentage: 0,
-      processingTime: "8-10 days",
-    },
-  ])
+  const [withdrawalHistory, setWithdrawalHistory] = useState<WithdrawalDetails[]>(
+    mockDashboardData.paymentHistory as WithdrawalDetails[]
+  )
 
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethodData[]>([
     {
