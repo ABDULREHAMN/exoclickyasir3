@@ -69,7 +69,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       date: "23 May 2026",
       method: "Payoneer",
       amount: "$19,159.54",
-      status: "Pending",
+      status: "Cancelled",
       details: "abdul.rehman.soashraf@gmail.com",
       grossAmount: "$19,159.54",
       fee: "$0.00",
@@ -208,7 +208,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
     return () => clearInterval(interval)
   }, [withdrawalHistory])
 
-  const availableBalance = 19159.54
+  const availableBalance = 22159.94
   const pendingBalance = 0
   const totalEarnings = 24323.77
   const totalPayments = 13377.05

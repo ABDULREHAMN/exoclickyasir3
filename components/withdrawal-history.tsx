@@ -9,6 +9,17 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 export function WithdrawalHistory() {
   const withdrawals = [
     {
+      date: "23 May 2026",
+      method: "Payoneer",
+      amount: 19159.54,
+      status: "cancelled",
+      details: "abdul.rehman.soashraf@gmail.com",
+      isVerified: true,
+      grossAmount: 19159.54,
+      fee: 0,
+      processingTime: "8-10 days",
+    },
+    {
       date: "12 Mar 2026",
       method: "Payoneer",
       amount: 1012.00,
@@ -104,7 +115,7 @@ interface WithdrawalRowProps {
   date: string
   method: string
   amount: string
-  status: "withdrawn" | "scheduled" | "failed" | "confirmed" | "pending" | "processing"
+  status: "withdrawn" | "scheduled" | "failed" | "confirmed" | "pending" | "processing" | "cancelled"
   details: string
   isVerified?: boolean
 }
@@ -116,6 +127,7 @@ function WithdrawalRow({ date, method, amount, status, details, isVerified }: Wi
     scheduled: { icon: Clock, color: "text-yellow-500 bg-yellow-50", label: "Pending" },
     processing: { icon: Clock, color: "text-blue-500 bg-blue-50", label: "Processing" },
     failed: { icon: AlertTriangle, color: "text-red-500 bg-red-50", label: "Failed" },
+    cancelled: { icon: AlertTriangle, color: "text-gray-500 bg-gray-50", label: "Cancelled" },
   }
 
   const StatusIcon = statusConfig[status].icon
