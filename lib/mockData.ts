@@ -27,9 +27,15 @@ export const mockDashboardData = {
     { date: "2026-06-09", revenue: 13.22, impressions: 3422, clicks: 102, ecpm: 32.11 },
   ],
   recentActivity: [
-    { date: "2026-06-09", revenue: 13.22, impressions: 3422, clicks: 102, ecpm: 32.11 },
-    { date: "2026-06-08", revenue: 25.33, impressions: 6765, clicks: 221, ecpm: 67.88 },
+    { date: "2026-06-01", revenue: 20.22, impressions: 6554, clicks: 189, ecpm: 59.77 },
+    { date: "2026-06-02", revenue: 20.88, impressions: 6598, clicks: 194, ecpm: 60.33 },
+    { date: "2026-06-03", revenue: 21.44, impressions: 6622, clicks: 198, ecpm: 61.22 },
+    { date: "2026-06-04", revenue: 22.11, impressions: 6655, clicks: 203, ecpm: 62.44 },
+    { date: "2026-06-05", revenue: 22.88, impressions: 6688, clicks: 207, ecpm: 63.88 },
+    { date: "2026-06-06", revenue: 23.55, impressions: 6712, clicks: 212, ecpm: 64.77 },
     { date: "2026-06-07", revenue: 24.44, impressions: 6740, clicks: 217, ecpm: 66.22 },
+    { date: "2026-06-08", revenue: 25.33, impressions: 6765, clicks: 221, ecpm: 67.88 },
+    { date: "2026-06-09", revenue: 13.22, impressions: 3422, clicks: 102, ecpm: 32.11 },
   ],
   earningsOverTime: {
     total: {
