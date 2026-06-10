@@ -69,7 +69,7 @@ export function PaymentContent({ onNavigate }: PaymentContentProps) {
       date: "23 May 2026",
       method: "Payoneer",
       amount: "$19,159.54",
-      status: "Pending",
+      status: "Cancelled",
       details: "abdul.rehman.soashraf@gmail.com",
       grossAmount: "$19,159.54",
       fee: "$0.00",
