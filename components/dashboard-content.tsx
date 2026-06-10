@@ -2,6 +2,7 @@
 
 import React from "react"
 import { useState, useMemo } from "react"
+import { mockDashboardData } from "@/lib/mockData"
 import {
   Eye,
   MousePointer,
@@ -79,12 +80,12 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     }
   }
 
-  const availableBalance = 22159.94
+  const availableBalance = mockDashboardData.dashboard.totals.available_balance
   const pendingBalance = 0
-  const thisMonthEarnings = 11379.48
-  const lastMonthEarnings = 3085.50
-  const totalPayments = 13377.05
-  const totalEarnings = 24323.77
+  const thisMonthEarnings = mockDashboardData.dashboard.totals.this_month
+  const lastMonthEarnings = mockDashboardData.dashboard.totals.last_month
+  const totalPayments = mockDashboardData.dashboard.totals.available_balance
+  const totalEarnings = mockDashboardData.dashboard.totals.last_6_months
   const nextWithdrawalDate = "14 Apr 2026"
 
   const allReportData = [
