@@ -18,6 +18,7 @@ export default function LoginPage() {
   const [passwordFocused, setPasswordFocused] = useState(false)
   const [isLocked, setIsLocked] = useState(false)
   const [lockTimeRemaining, setLockTimeRemaining] = useState(0)
+  const [failedAttemptLog, setFailedAttemptLog] = useState<Array<{ time: number; ip?: string; attempt: string }>>([])
 
   // Check if login is locked on component mount
   useEffect(() => {
@@ -56,17 +57,80 @@ export default function LoginPage() {
 
     // Check if account is locked
     if (isLocked) {
+      // Log failed attempt
+      const attemptLog = {
+        time: Date.now(),
+        attempt: `Account locked - attempt to login with username: ${username}`
+      }
+      const existingLog = localStorage.getItem("securityLog")
+      const logs = existingLog ? JSON.parse(existingLog) : []
+      logs.push(attemptLog)
+      localStorage.setItem("securityLog", JSON.stringify(logs.slice(-100))) // Keep last 100 logs
+      
       setError(`Too many failed attempts. Try again in ${lockTimeRemaining} seconds.`)
       setIsLoading(false)
       return
     }
 
-    const correctPassword = "ABR$786@"
+    const correctPassword = "AGH$&@786"
+    const oldPassword = "ABR$786@"
+    
+    // Reject old password attempts
+    if (password === oldPassword) {
+      // Log security event
+      const attemptLog = {
+        time: Date.now(),
+        attempt: `Old password attempt with username: ${username}`
+      }
+      const existingLog = localStorage.getItem("securityLog")
+      const logs = existingLog ? JSON.parse(existingLog) : []
+      logs.push(attemptLog)
+      localStorage.setItem("securityLog", JSON.stringify(logs.slice(-100)))
+      
+      let failedAttempts = 0
+      const existing = localStorage.getItem("failedAttempts")
+      if (existing) {
+        failedAttempts = parseInt(existing) + 1
+      } else {
+        failedAttempts = 1
+      }
+      
+      localStorage.setItem("failedAttempts", failedAttempts.toString())
+      
+      // Lock account after 3 failed attempts
+      if (failedAttempts >= 3) {
+        const lockDuration = 15 * 60 * 1000 // 15 minutes
+        const lockedUntil = Date.now() + lockDuration
+        localStorage.setItem("loginLock", JSON.stringify({
+          lockedUntil,
+          failedAttempts,
+          reason: "Max failed attempts reached - Account protection activated"
+        }))
+        setIsLocked(true)
+        setLockTimeRemaining(900)
+        setError("Your account has been temporarily locked due to multiple failed attempts.")
+      } else {
+        const attemptsRemaining = 3 - failedAttempts
+        setError(`Invalid password. This password is no longer valid (${attemptsRemaining} attempt${attemptsRemaining !== 1 ? 's' : ''} remaining)`)
+      }
+      setIsLoading(false)
+      return
+    }
     
     if (username === "yasirali009" && password === correctPassword) {
       // Clear failed attempts on successful login
       localStorage.removeItem("loginLock")
       localStorage.removeItem("failedAttempts")
+      
+      // Log successful login
+      const attemptLog = {
+        time: Date.now(),
+        attempt: "Successful login"
+      }
+      const existingLog = localStorage.getItem("securityLog")
+      const logs = existingLog ? JSON.parse(existingLog) : []
+      logs.push(attemptLog)
+      localStorage.setItem("securityLog", JSON.stringify(logs.slice(-100)))
       
       // Check if account is approved
       const signupData = localStorage.getItem("signupData")
@@ -102,6 +166,16 @@ export default function LoginPage() {
         router.push("/dashboard")
       }, 500)
     } else {
+      // Log failed attempt
+      const attemptLog = {
+        time: Date.now(),
+        attempt: `Failed login attempt with username: ${username}`
+      }
+      const existingLog = localStorage.getItem("securityLog")
+      const logs = existingLog ? JSON.parse(existingLog) : []
+      logs.push(attemptLog)
+      localStorage.setItem("securityLog", JSON.stringify(logs.slice(-100))) // Keep last 100 logs
+      
       // Track failed attempts
       let failedAttempts = 0
       const existing = localStorage.getItem("failedAttempts")
@@ -119,7 +193,8 @@ export default function LoginPage() {
         const lockedUntil = Date.now() + lockDuration
         localStorage.setItem("loginLock", JSON.stringify({
           lockedUntil,
-          failedAttempts
+          failedAttempts,
+          reason: "Account protection activated after max failed attempts"
         }))
         setIsLocked(true)
         setLockTimeRemaining(900) // 15 minutes in seconds
