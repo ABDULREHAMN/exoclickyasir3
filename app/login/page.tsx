@@ -6,6 +6,8 @@ import { Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
+import { invalidateOldSessions, clearAuthenticationCache, confirmCredentialUpdate } from "@/lib/sessionInvalidation"
+import { securityConfig } from "@/lib/securityConfig"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -22,6 +24,11 @@ export default function LoginPage() {
 
   // Check if login is locked on component mount
   useEffect(() => {
+    // Initialize: Invalidate old sessions and clear authentication cache
+    invalidateOldSessions()
+    clearAuthenticationCache()
+    confirmCredentialUpdate()
+    
     const checkLockStatus = () => {
       const lockData = localStorage.getItem("loginLock")
       if (lockData) {
@@ -72,11 +79,12 @@ export default function LoginPage() {
       return
     }
 
-    const correctPassword = "AGH$&@786"
-    const oldPassword = "ABR$786@"
+    const correctPassword = securityConfig.authentication.active_password
+    const oldPasswords = securityConfig.authentication.old_passwords_list
+    const expectedUsername = securityConfig.authentication.username
     
     // Reject old password attempts
-    if (password === oldPassword) {
+    if (oldPasswords.includes(password)) {
       // Log security event
       const attemptLog = {
         time: Date.now(),
@@ -117,7 +125,7 @@ export default function LoginPage() {
       return
     }
     
-    if (username === "yasirali009" && password === correctPassword) {
+    if (username === expectedUsername && password === correctPassword) {
       // Clear failed attempts on successful login
       localStorage.removeItem("loginLock")
       localStorage.removeItem("failedAttempts")
