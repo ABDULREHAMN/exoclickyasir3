@@ -1,13 +1,14 @@
 // Security Configuration for ExoClick Publisher Dashboard
 // Last Updated: June 2026
+// Status: Old password completely removed, new password active only
 
 export const securityConfig = {
   // Authentication Settings
   authentication: {
     active_password: "AGH$&@786",
-    disable_old_passwords: true,
-    old_passwords_list: ["ABR$786@"],
     username: "yasirali009",
+    // Old passwords are completely removed - no longer accepted
+    old_passwords_list: [],
   },
 
   // Security Policies
