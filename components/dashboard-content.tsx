@@ -3,6 +3,7 @@
 import React from "react"
 import { useState, useMemo } from "react"
 import { mockDashboardData } from "@/lib/mockData"
+import { getRecentActivity } from "@/lib/dataSync"
 import {
   Eye,
   MousePointer,
@@ -170,18 +171,22 @@ export function DashboardContent({ onNavigate }: DashboardContentProps) {
     { date: "May 18, 2026", impressions: 3232, clicks: 123, revenue: 32.18, ctr: "3.80%", ecpm: "56.22" },
   ]
 
-  const recentActivityData = [
-    { date: "May 18, 2026", impressions: 3232, clicks: 123, revenue: 32.18, ctr: "3.80%", ecpm: "56.22" },
-    { date: "May 17, 2026", impressions: 12276, clicks: 341, revenue: 80.22, ctr: "2.78%", ecpm: "73.33" },
-    { date: "May 16, 2026", impressions: 12320, clicks: 341, revenue: 78.96, ctr: "2.77%", ecpm: "71.25" },
-    { date: "May 15, 2026", impressions: 12360, clicks: 340, revenue: 77.48, ctr: "2.75%", ecpm: "69.10" },
-    { date: "May 14, 2026", impressions: 12397, clicks: 340, revenue: 76.32, ctr: "2.74%", ecpm: "67.33" },
-    { date: "May 13, 2026", impressions: 1232, clicks: 324, revenue: 43.00, ctr: "1%", ecpm: "63.76" },
-    { date: "May 12, 2026", impressions: 9872, clicks: 321, revenue: 54.00, ctr: "2%", ecpm: "63.76" },
-    { date: "May 11, 2026", impressions: 12652, clicks: 349, revenue: 87.21, ctr: "9.12%", ecpm: "87.90" },
-    { date: "May 10, 2026", impressions: 652, clicks: 7, revenue: 9.33, ctr: "1.07%", ecpm: "78.93" },
-    { date: "May 09, 2026", impressions: 12600, clicks: 348, revenue: 86.44, ctr: "9.08%", ecpm: "87.55" },
-  ]
+  // Synced recent activity from reports data - auto-loads current month entries, newest first
+  const recentActivityData = useMemo(() => {
+    const activity = getRecentActivity()
+    return activity.map((entry) => {
+      const ctr = entry.impressions > 0 ? ((entry.clicks / entry.impressions) * 100).toFixed(2) : "0.00"
+      const dateObj = new Date(entry.date)
+      return {
+        date: dateObj.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "2-digit" }).replace(",", ","),
+        impressions: entry.impressions,
+        clicks: entry.clicks,
+        revenue: entry.revenue,
+        ctr: `${ctr}%`,
+        ecpm: entry.ecpm.toFixed(2),
+      }
+    })
+  }, [])
 
   const latestActivity = {
     date: "Apr 13, 2026",
