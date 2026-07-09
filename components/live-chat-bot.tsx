@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { MessageCircle, X, Send } from "lucide-react"
+import { MessageCircle, X, Send, RefreshCw, Maximize2, Check } from "lucide-react"
 
 interface ChatMessage {
   id: string
@@ -185,26 +185,47 @@ export default function LiveChatBot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-40 w-96 bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden md:w-80 sm:w-72">
+        <div className="fixed bottom-24 right-6 z-40 w-[480px] bg-white rounded-t-3xl shadow-2xl flex flex-col overflow-hidden md:w-96 sm:w-80">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4">
-            <div className="mb-3">
-              <h2 className="text-white font-bold text-lg">ExoClick Live Support</h2>
-              <p className="text-xs text-blue-100">Get instant help from our team</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">MC</span>
+          <div className="bg-blue-600 px-5 py-4 flex items-center justify-between gap-4 h-20 border-b border-blue-700 shadow-sm">
+            {/* Left Section - Avatar, Name, Title */}
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                <span className="text-white font-bold text-base">MA</span>
               </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-white">Michael Carter</h3>
-                <div className="flex items-center gap-1">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <p className="text-xs text-blue-100">Online</p>
-                </div>
+              <div className="flex flex-col justify-center min-w-0">
+                <h3 className="font-bold text-white text-base leading-tight whitespace-nowrap">Michael Anderson</h3>
+                <p className="text-xs text-blue-100 leading-tight">Support Manager</p>
               </div>
             </div>
-            <p className="text-xs text-blue-100 mt-3">Withdrawal: $19,145.49 • Pending Verification</p>
+
+            {/* Center Section - Badges */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <div className="flex items-center gap-1.5 bg-green-500 text-white px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap">
+                <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                Online
+              </div>
+              <div className="flex items-center gap-1.5 border border-white text-white px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap">
+                <Check className="w-3 h-3" />
+                Verified
+              </div>
+            </div>
+
+            {/* Right Section - Icons */}
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <button className="p-1.5 hover:bg-blue-700 rounded-lg transition-colors text-white">
+                <RefreshCw className="w-4 h-4" />
+              </button>
+              <button className="p-1.5 hover:bg-blue-700 rounded-lg transition-colors text-white">
+                <Maximize2 className="w-4 h-4" />
+              </button>
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="p-1.5 hover:bg-blue-700 rounded-lg transition-colors text-white"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
