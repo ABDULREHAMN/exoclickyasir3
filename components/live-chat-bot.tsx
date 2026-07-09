@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { MessageCircle, X, Send } from "lucide-react"
+import { MessageCircle, X, Send, RefreshCw, Maximize2, Check, ChevronDown, AlertCircle, CheckCircle2, Clock, Paperclip, Smile } from "lucide-react"
 
 interface ChatMessage {
   id: string
@@ -11,6 +11,25 @@ interface ChatMessage {
   delivered?: boolean
   seen?: boolean
 }
+
+interface VerificationStep {
+  id: string
+  name: string
+  status: "completed" | "in_progress" | "pending"
+  completedDate?: string
+  description: string
+}
+
+const VERIFICATION_STEPS: VerificationStep[] = [
+  { id: "1", name: "Identity Verification", status: "completed", completedDate: "Nov 15, 2024", description: "Verified your identity and personal information." },
+  { id: "2", name: "Account Verification", status: "completed", completedDate: "Nov 16, 2024", description: "Confirmed account ownership and security settings." },
+  { id: "3", name: "Payment Method Verification", status: "completed", completedDate: "Nov 17, 2024", description: "Validated your Payoneer payment method." },
+  { id: "4", name: "Security Verification", status: "completed", completedDate: "Nov 18, 2024", description: "Completed security and compliance checks." },
+  { id: "5", name: "Finance Department Review", status: "in_progress", description: "Reviewing traffic patterns and account activity." },
+  { id: "6", name: "Fund Receipt Verification", status: "in_progress", description: "Verifying fund receipt and transaction details." },
+  { id: "7", name: "Payment Authorization", status: "pending", description: "Awaiting final payment authorization." },
+  { id: "8", name: "Payment Release", status: "pending", description: "Processing and releasing funds to your account." },
+]
 
 const PAYMENT_SUPPORT_CONVERSATION = [
   { q: "Why is my $19,145.49 withdrawal pending?", a: "Your withdrawal is currently under verification review due to recent traffic pattern changes detected on your account." },
@@ -64,19 +83,62 @@ export default function LiveChatBot() {
   const [isTyping, setIsTyping] = useState(false)
   const [userInput, setUserInput] = useState("")
   const [showCancelConfirm, setShowCancelConfirm] = useState(false)
+  const [showVerificationPanel, setShowVerificationPanel] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  // Initialize chat on component mount
+  // Initialize chat on component mount with timeline updates
   useEffect(() => {
-    const initialMessage: ChatMessage = {
-      id: "init-1",
-      text: "Hello 👋\n\nWelcome to ExoClick Live Support.\n\nHow can we help you today?\n\nA support agent will reply shortly.",
-      sender: "support",
-      timestamp: new Date(),
-      delivered: true,
-      seen: true,
-    }
-    setMessages([initialMessage])
+    const timelineMessages: ChatMessage[] = [
+      {
+        id: "timeline-1",
+        text: "✅ Identity Verification completed on Nov 15, 2024",
+        sender: "support",
+        timestamp: new Date(Date.now() - 3600000 * 96),
+        delivered: true,
+        seen: true,
+      },
+      {
+        id: "timeline-2",
+        text: "✅ Account Verification completed on Nov 16, 2024",
+        sender: "support",
+        timestamp: new Date(Date.now() - 3600000 * 72),
+        delivered: true,
+        seen: true,
+      },
+      {
+        id: "timeline-3",
+        text: "✅ Payment Method Verification completed on Nov 17, 2024",
+        sender: "support",
+        timestamp: new Date(Date.now() - 3600000 * 48),
+        delivered: true,
+        seen: true,
+      },
+      {
+        id: "timeline-4",
+        text: "✅ Security Verification completed on Nov 18, 2024",
+        sender: "support",
+        timestamp: new Date(Date.now() - 3600000 * 24),
+        delivered: true,
+        seen: true,
+      },
+      {
+        id: "timeline-5",
+        text: "🔵 Finance Department Review started today. We're analyzing your traffic patterns and account activity to ensure everything meets our compliance standards.",
+        sender: "support",
+        timestamp: new Date(Date.now() - 3600000 * 2),
+        delivered: true,
+        seen: true,
+      },
+      {
+        id: "init-1",
+        text: "Hello 👋\n\nWelcome to ExoClick Live Support.\n\nYour withdrawal of $19,145.49 is progressing through our verification system. Currently, we have completed 4 of 8 verification steps. Your Finance Department Review is underway.\n\nHow can we help you today?",
+        sender: "support",
+        timestamp: new Date(),
+        delivered: true,
+        seen: true,
+      },
+    ]
+    setMessages(timelineMessages)
   }, [])
 
   // Auto-scroll to latest message
@@ -185,50 +247,95 @@ export default function LiveChatBot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-40 w-96 bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden md:w-80 sm:w-72">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4">
-            <div className="mb-3">
-              <h2 className="text-white font-bold text-lg">ExoClick Live Support</h2>
-              <p className="text-xs text-blue-100">Get instant help from our team</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">MC</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-white">Michael Carter</h3>
-                <div className="flex items-center gap-1">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <p className="text-xs text-blue-100">Online</p>
+        <div className="fixed bottom-24 right-6 z-40 w-[480px] bg-white rounded-t-3xl shadow-2xl flex flex-col overflow-hidden md:w-96 sm:w-80">
+          {/* Header - Fixed */}
+          <div className="sticky top-0 bg-blue-600 px-5 py-3 border-b border-blue-700 shadow-sm">
+            {/* Top Row - Name and Badges */}
+            <div className="flex items-center justify-between gap-3 mb-2">
+              <div className="flex items-center gap-3 flex-1 min-w-0">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                  <span className="text-white font-bold text-sm">MA</span>
+                </div>
+                <div className="flex flex-col justify-center min-w-0">
+                  <h3 className="font-bold text-white text-sm leading-tight whitespace-nowrap">Michael Anderson</h3>
+                  <p className="text-xs text-blue-100 leading-tight">Support Manager</p>
                 </div>
               </div>
+
+              {/* Badges and Controls */}
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <div className="flex items-center gap-1 bg-green-500 text-white px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap">
+                  <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                  Online
+                </div>
+                <div className="flex items-center gap-1 border border-white text-white px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap">
+                  <Check className="w-3 h-3" />
+                  Verified
+                </div>
+                <button 
+                  onClick={() => setShowVerificationPanel(!showVerificationPanel)}
+                  className="p-1 hover:bg-blue-700 rounded transition-colors text-white ml-1"
+                  title="View verification details"
+                >
+                  <ChevronDown className={`w-4 h-4 transition-transform ${showVerificationPanel ? "rotate-180" : ""}`} />
+                </button>
+              </div>
             </div>
-            <p className="text-xs text-blue-100 mt-3">Withdrawal: $19,145.49 • Pending Verification</p>
+
+            {/* Bottom Row - Activity Info */}
+            <div className="flex items-center justify-between text-xs text-blue-100 px-0">
+              <span>Last Active: Active Now</span>
+              <span>Response Time: Usually replies within a few minutes</span>
+            </div>
+
+            {/* Verification Panel */}
+            {showVerificationPanel && (
+              <div className="mt-3 pt-3 border-t border-blue-500 max-h-64 overflow-y-auto">
+                <h4 className="text-xs font-semibold text-white mb-2">Verification Progress (4/8 Completed)</h4>
+                <div className="space-y-2">
+                  {VERIFICATION_STEPS.map((step) => (
+                    <div key={step.id} className="flex items-start gap-2 text-xs">
+                      <div className="flex-shrink-0 mt-0.5">
+                        {step.status === "completed" && <CheckCircle2 className="w-4 h-4 text-green-300" />}
+                        {step.status === "in_progress" && <Clock className="w-4 h-4 text-yellow-300" />}
+                        {step.status === "pending" && <Clock className="w-4 h-4 text-gray-300" />}
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-white font-medium">{step.name}</p>
+                        <p className="text-blue-200">{step.description}</p>
+                        {step.completedDate && <p className="text-blue-100 text-xs">Completed: {step.completedDate}</p>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 h-96">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50 h-80">
             {messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`flex gap-3 ${msg.sender === "user" ? "flex-row-reverse" : "flex-row"}`}
               >
                 {msg.sender === "support" && (
-                  <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-xs">MC</span>
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center flex-shrink-0 shadow-sm">
+                    <span className="text-white font-bold text-xs">MA</span>
                   </div>
                 )}
-                <div
-                  className={`max-w-xs rounded-lg px-4 py-2 text-sm whitespace-pre-wrap ${
-                    msg.sender === "user"
-                      ? "bg-blue-600 text-white rounded-br-none"
-                      : "bg-white border border-gray-200 text-gray-900 rounded-bl-none"
-                  }`}
-                >
-                  {msg.text}
+                <div className="flex flex-col gap-1 flex-1">
                   <div
-                    className={`text-xs mt-1 ${
+                    className={`max-w-sm rounded-2xl px-4 py-3 text-sm whitespace-pre-wrap leading-relaxed ${
+                      msg.sender === "user"
+                        ? "bg-blue-600 text-white rounded-br-none ml-auto"
+                        : "bg-white border border-gray-200 text-gray-900 rounded-bl-none shadow-sm"
+                    }`}
+                  >
+                  {msg.text}
+                  </div>
+                  <div
+                    className={`text-xs mt-1 px-1 ${
                       msg.sender === "user" ? "text-blue-100" : "text-gray-400"
                     }`}
                   >
@@ -239,27 +346,6 @@ export default function LiveChatBot() {
                 </div>
               </div>
             ))}
-
-            {isTyping && (
-              <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-                  <span className="text-white font-bold text-xs">MC</span>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg rounded-bl-none px-4 py-2">
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div
-                      className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                      style={{ animationDelay: "0.1s" }}
-                    ></div>
-                    <div
-                      className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                      style={{ animationDelay: "0.2s" }}
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            )}
 
             {showCancelConfirm && (
               <div className="flex gap-3">
@@ -291,25 +377,29 @@ export default function LiveChatBot() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Status */}
-          <div className="px-4 py-2 bg-gray-100 border-t border-gray-200">
-            <p className="text-xs text-gray-500 text-center">Message delivered and seen</p>
-          </div>
-
-          {/* Input */}
-          <div className="p-4 border-t border-gray-200 bg-white flex gap-2">
+          {/* Professional Footer */}
+          <div className="border-t border-gray-200 bg-white p-4 flex items-end gap-3">
+            <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-600 flex-shrink-0">
+              <Paperclip className="w-5 h-5" />
+            </button>
+            
             <input
               type="text"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-              placeholder="Ask about your withdrawal..."
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+              placeholder="Type your message..."
+              className="flex-1 px-4 py-2.5 border border-gray-300 rounded-full text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 bg-gray-50 transition-all"
             />
+            
+            <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-600 flex-shrink-0">
+              <Smile className="w-5 h-5" />
+            </button>
+            
             <button
               onClick={handleSendMessage}
               disabled={!userInput.trim()}
-              className="p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="p-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm"
             >
               <Send className="h-4 w-4" />
             </button>
